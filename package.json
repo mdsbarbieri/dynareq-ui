@@ -1,0 +1,24 @@
+{
+    "name": "dynareq-ui",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+        "react": "^16.1.1",
+        "react-dom": "^16.1.1"
+    },
+    "main": "electron-starter.js",
+    "scripts": {
+        "react": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test --env=jsdom",
+        "eject": "react-scripts eject",
+        "electron": "electron .",
+        "start": "nf start"
+    },
+    "homepage": "./",
+    "devDependencies": {
+        "electron": "^1.7.9",
+        "foreman": "^2.0.0",
+        "react-scripts": "1.0.17"
+    }
+}
