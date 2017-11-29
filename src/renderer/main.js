@@ -24,9 +24,7 @@ new Vue({
                     isProduction: true
                 }
             },
-            action: {
-                valuess: {}
-            }
+            action: {}
         }
     }
 }).$mount('#app')

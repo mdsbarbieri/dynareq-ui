@@ -1,0 +1,95 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js install
+
+PATH: 
+  C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft Team Foundation Server 2013 Power Tools\Best Practices Analyzer\;C:\Program Files\Git\cmd;C:\Program Files\PuTTY\;C:\Program Files (x86)\Bitvise SSH Client;C:\Program Files (x86)\Skype\Phone\;C:\ATG\ATG11.3\MySQL\win32\bin;C:\Program Files\TortoiseGit\bin;C:\HashiCorp\Vagrant\bin;C:\Program Files\nodejs\;C:\Program Files (x86)\Yarn\bin;C:\Users\eduardo.santos\AppData\Local\Programs\Python\Python35\Scripts\;C:\Users\eduardo.santos\AppData\Local\Programs\Python\Python35\;C:\Users\eduardo.santos\AppData\Local\Microsoft\WindowsApps;C:\Users\eduardo.santos\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Microsoft VS Code\bin;C:\Users\eduardo.santos\AppData\Local\GitHubDesktop\bin;C:\Users\eduardo.santos\AppData\Roaming\npm;C:\Users\eduardo.santos\AppData\Local\Yarn\bin
+
+Yarn version: 
+  1.3.2
+
+Node version: 
+  8.9.1
+
+Platform: 
+  win32 x64
+
+npm manifest: 
+  {
+    "name": "dynareq-ui",
+    "productName": "dynareq-ui",
+    "version": "0.0.0",
+    "author": "Matheus Barbieri <mdsbarbieri@gmail.com>",
+    "description": "Execute requests to all production servers",
+    "license": null,
+    "main": "./dist/electron/main.js",
+    "scripts": {
+      "build": "node .electron-vue/build.js",
+      "build:darwin": "cross-env BUILD_TARGET=darwin node .electron-vue/build.js",
+      "build:linux": "cross-env BUILD_TARGET=linux node .electron-vue/build.js",
+      "build:mas": "cross-env BUILD_TARGET=mas node .electron-vue/build.js",
+      "build:win32": "cross-env BUILD_TARGET=win32 node .electron-vue/build.js",
+      "build:clean": "cross-env BUILD_TARGET=clean node .electron-vue/build.js",
+      "build:web": "cross-env BUILD_TARGET=web node .electron-vue/build.js",
+      "dev": "node .electron-vue/dev-runner.js",
+      "pack": "npm run pack:main && npm run pack:renderer",
+      "pack:main": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.main.config.js",
+      "pack:renderer": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.renderer.config.js",
+      "postinstall": ""
+    },
+    "dependencies": {
+      "bulma": "^0.6.1",
+      "vue": "^2.3.3",
+      "vue-electron": "^1.0.6",
+      "vue-router": "^2.5.3",
+      "vue-stash": "^2.0.1-beta"
+    },
+    "devDependencies": {
+      "babel-core": "^6.25.0",
+      "babel-loader": "^7.1.1",
+      "babel-plugin-transform-runtime": "^6.23.0",
+      "babel-preset-env": "^1.6.0",
+      "babel-preset-stage-0": "^6.24.1",
+      "babel-register": "^6.24.1",
+      "babili-webpack-plugin": "^0.1.2",
+      "cfonts": "^1.1.3",
+      "chalk": "^2.1.0",
+      "copy-webpack-plugin": "^4.0.1",
+      "cross-env": "^5.0.5",
+      "css-loader": "^0.28.4",
+      "del": "^3.0.0",
+      "devtron": "^1.4.0",
+      "electron": "^1.7.5",
+      "electron-debug": "^1.4.0",
+      "electron-devtools-installer": "^2.2.0",
+      "electron-packager": "^8.5.0",
+      "electron-rebuild": "^1.1.3",
+      "extract-text-webpack-plugin": "^3.0.0",
+      "file-loader": "^0.11.2",
+      "html-webpack-plugin": "^2.30.1",
+      "multispinner": "^0.2.1",
+      "node-loader": "^0.6.0",
+      "style-loader": "^0.18.2",
+      "url-loader": "^0.5.9",
+      "vue-html-loader": "^1.2.4",
+      "vue-loader": "^13.0.5",
+      "vue-style-loader": "^3.0.1",
+      "vue-template-compiler": "^2.4.2",
+      "webpack": "^3.5.2",
+      "webpack-dev-server": "^2.7.1",
+      "webpack-hot-middleware": "^2.18.2"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  Error: self signed certificate in certificate chain
+      at TLSSocket.<anonymous> (_tls_wrap.js:1103:38)
+      at emitNone (events.js:106:13)
+      at TLSSocket.emit (events.js:208:7)
+      at TLSSocket._finishInit (_tls_wrap.js:637:8)
+      at TLSWrap.ssl.onhandshakedone (_tls_wrap.js:467:38)

@@ -25,8 +25,8 @@
                         <div class="field">
                             <label class="label">Type</label>
                             <div class="control">
-                                <div class="select" v-model="actionType">
-                                    <select>
+                                <div class="select">
+                                    <select  v-model="action.actionType">
                                         <option value="setValue">Set Value</option>
                                         <option value="invokeMethod">Invoke Method</option>
                                     </select>
@@ -34,7 +34,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="column" v-if="actionType == 'invokeMethod'">
+                    <div class="column" v-if="action.actionType == 'invokeMethod'">
                         <div class="field">
                             <label class="label">Method</label>
                             <div class="control">
@@ -45,7 +45,7 @@
                 </div>
             </div>
             <div class="column ">
-                {{actionType}}
+                {{action.actionType}}
             </div>
             <div class="column ">
                 <a class="button w-100 is-info is-outlined m-t-26">
