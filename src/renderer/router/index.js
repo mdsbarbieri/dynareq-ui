@@ -12,7 +12,7 @@ export default new Router({
         {
             path: '/registerip',
             name: 'registerip',
-            component: require('@/components/RegisterIp').default
+            component: require('@/components/RegisterEnvironment').default
         },
         {
             path: '*',

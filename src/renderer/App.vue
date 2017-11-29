@@ -2,24 +2,27 @@
   
   <div id="app">
     <navbar></navbar>
+    <tab></tab>
 
     <router-view></router-view>
   </div>
 </template>
 
 <script>
-  import Navbar from  '@/components/Navbar';
-  export default {
-    components:{
-      Navbar
-    },
-    name: 'dynareq-ui',
-    store: {
-        global: 'global'
+    import Navbar from '@/components/Navbar';
+    import Tab from '@/components/Tab';
+    export default {
+        components: {
+            Navbar,
+            Tab
+        },
+        name: 'dynareq-ui',
+        store: {
+            global: 'global'
+        }
     }
-  }
 </script>
 
 <style>
-  /* CSS */
+    /* CSS */
 </style>

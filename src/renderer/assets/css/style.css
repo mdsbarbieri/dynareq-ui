@@ -32,6 +32,9 @@ a.navbar-link.isProduction.is-active {
 }
 
 @media screen and (max-width: 1024px) {
+    .has-navbar-fixed-top {
+        padding-top: 92px !important;
+    }
     .navbar-link:after {
         border: 1px solid #ffffff;
         border-right: 0;
