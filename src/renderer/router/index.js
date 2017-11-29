@@ -10,9 +10,14 @@ export default new Router({
             component: require('@/components/Home').default
         },
         {
-            path: '/registerip',
-            name: 'registerip',
+            path: '/registerEnvironment',
+            name: 'registerEnvironment',
             component: require('@/components/RegisterEnvironment').default
+        },
+        {
+            path: '/registerAction',
+            name: 'registerAction',
+            component: require('@/components/RegisterAction').default
         },
         {
             path: '*',

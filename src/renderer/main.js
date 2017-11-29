@@ -23,6 +23,9 @@ new Vue({
                     name: "Production",
                     isProduction: true
                 }
+            },
+            action: {
+                valuess: {}
             }
         }
     }

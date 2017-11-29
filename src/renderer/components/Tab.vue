@@ -1,8 +1,9 @@
 <template>
     <div class="tabs">
         <ul>
-            <li class="is-active"><router-link to="/">Home</router-link></li>
-            <li><router-link to="/registerip">Register Environments</router-link></li>
+            <li v-bind:class="{ 'is-active': $route.name == 'home'}"><router-link to="/">Home</router-link></li>
+            <li v-bind:class="{ 'is-active': $route.name == 'registerEnvironment'}"><router-link to="/registerEnvironment">Register Environments</router-link></li>
+            <li v-bind:class="{ 'is-active': $route.name == 'registerAction'}"><router-link to="/registerAction">Register Actions</router-link></li>
         </ul>
     </div>
 </template>

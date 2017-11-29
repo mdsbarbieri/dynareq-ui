@@ -1,0 +1,85 @@
+<section>
+
+    <h4 class="title">Add Environment</h4>
+    <div class="field has-addons">
+        <div class="columns w-100 ">
+            <div class="column is-four-fifths">
+                <div class="columns">
+                    <div class="column">
+                        <div class="field">
+                            <label class="label">Environment</label>
+                            <div class="control">
+                                <input class="input" type="text" placeholder="Environment">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="field">
+                            <label class="label">User</label>
+                            <div class="control">
+                                <input class="input" type="text" placeholder="User">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="field">
+                            <label class="label">Password</label>
+                            <div class="control">
+                                <input class="input" type="password" placeholder="Password">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column ">
+                <a class="button w-100 is-info is-outlined m-t-26">
+                    Add Environment
+                </a>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <h4 class="title">Environment List</h4>
+    <div class="box b-0 p-0" v-for="item in environments">
+        <div class="relative title-content" v-bind:class="{ isProduction: item.isProduction}">
+            <p class="reset">{{ item.name }}</p>
+            <span class="delete remove" aria-label="delete"></span>
+        </div>
+        <div>
+            <ul class="reset">
+                <li class="host-item" v-for="host in item.hosts">
+                    {{host}}
+                    <span class="delete remove" aria-label="delete"></span>
+                </li>
+                <li class="host-item">
+                    <div class="columns">
+                        <div class="column is-four-fifths ">
+                            <div class="field has-addons">
+                                <div class="control w-100 ">
+                                    <input class="input" type="text" placeholder="Add list separated by ','">
+                                </div>
+                                <div class="control">
+                                    <a class="button is-info is-outlined">
+                                        Add List
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="field has-addons">
+                                <div class="control">
+                                    <input class="input" type="text" placeholder="Add Single">
+                                </div>
+                                <div class="control">
+                                    <a class="button is-info is-outlined">
+                                        Add
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>

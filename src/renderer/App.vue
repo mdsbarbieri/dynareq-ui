@@ -3,8 +3,9 @@
   <div id="app">
     <navbar></navbar>
     <tab></tab>
-
-    <router-view></router-view>
+    <div class="content">
+        <router-view></router-view>
+    </div>
   </div>
 </template>
 

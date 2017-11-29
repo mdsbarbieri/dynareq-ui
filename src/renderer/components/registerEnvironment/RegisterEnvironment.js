@@ -1,11 +1,11 @@
-import { setInterval } from "timers";
+import { Environments } from "../../assets/js/Core";
 
 export default {
     name: 'register-component',
     components: {},
     data() {
         return {
-            // name: "Juao",
+            environments: Environments
         }
     },
     created() {

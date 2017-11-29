@@ -1,2 +1,2 @@
-<template src="./registerip/RegisterEnvironment.html"></template>
-<script src="./registerip/RegisterEnvironment"></script>
+<template src="./registerEnvironment/RegisterEnvironment.html"></template>
+<script src="./registerEnvironment/RegisterEnvironment"></script>
