@@ -5,19 +5,18 @@ export default {
     components: {},
     data() {
         return {
-            name: "Juao",
+            // name: "Juao",
         }
     },
     created() {
-        this.fetchData();
+        // this.fetchData();
     },
     watch: {
-        'name': 'fetchData'
+        // 'name': 'fetchData'
     },
     methods: {
         fetchData() {
-            this.$store.global.environment = "Local";
-            console.log('enter');
+            // this.$store.global.environment = "Local";
         }
     }
 }

@@ -1,52 +1,41 @@
 <template>
-    <nav class="navbar is-dark">
+    <nav class="navbar is-dark is-fixed-top">
         <div class="navbar-brand">
-            <a class="navbar-item" href="https://bulma.io">
-                <img src="https://bulma.io/images/bulma-logo-white.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28">
+            <a class="navbar-item">
+                <h1>DynareqUI</h1>
             </a>
         </div>
-
-        <div id="navbarExampleTransparentExample" class="navbar-menu">
-            <div class="navbar-start">
-                <a class="navbar-item" href="https://bulma.io/">
-                    Home
+        <div class="navbar-menu is-active">
+            <div class="navbar-end navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link color-environment"  v-bind:class="{ isProduction: $store.global.environment.isProduction}" >
+                    <div class="center">{{$store.global.environment.name}}</div>
                 </a>
-                <div class="navbar-item has-dropdown is-hoverable">
-                    <a class="navbar-link" href="/documentation/overview/start/">
-                        Docs
+                <div class="navbar-dropdown">
+                    <a class="navbar-item" v-on:click="changeEnvironment('Production', true)">
+                        Production
                     </a>
-                    <div class="navbar-dropdown is-boxed">
-                        <a class="navbar-item" href="/documentation/overview/start/">
-                            Overview
-                        </a>
-                        <a class="navbar-item" href="https://bulma.io/documentation/modifiers/syntax/">
-                            Modifiers
-                        </a>
-                        <a class="navbar-item" href="https://bulma.io/documentation/columns/basics/">
-                            Columns
-                        </a>
-                        <a class="navbar-item" href="https://bulma.io/documentation/layout/container/">
-                            Layout
-                        </a>
-                        <a class="navbar-item" href="https://bulma.io/documentation/form/general/">
-                            Form
-                        </a>
-                        <hr class="navbar-divider">
-                        <a class="navbar-item" href="https://bulma.io/documentation/elements/box/">
-                            Elements
-                        </a>
-                        <a class="navbar-item is-active" href="https://bulma.io/documentation/components/breadcrumb/">
-                            Components
-                        </a>
-                    </div>
+                    <a class="navbar-item" v-on:click="changeEnvironment('HML', false)">
+                        HML
+                    </a>
+                    <a class="navbar-item" v-on:click="changeEnvironment('Local', false)">
+                        Local
+                    </a>
                 </div>
             </div>
         </div>
     </nav>
 </template>
-
 <script>
-export default {
-    name  : 'navbar'
-}
+    export default {
+        name: 'navbar',
+        data: function() {
+            return {}
+        },
+        methods: {
+            changeEnvironment(environment, isProduction) {
+                this.$store.global.environment.isProduction = isProduction;
+                this.$store.global.environment.name = environment;
+            }
+        }
+    }
 </script>

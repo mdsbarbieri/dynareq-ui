@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import 'bulma/css/bulma.css'
+import './assets/css/style.css'
 import App from './App'
 import router from './router'
 import VueStash from 'vue-stash';
@@ -18,7 +19,10 @@ new Vue({
     data: {
         store: {
             global: {
-                environment: "Production"
+                environment: {
+                    name: "Production",
+                    isProduction: true
+                }
             }
         }
     }
