@@ -114,9 +114,6 @@ ul {
 }
 
 @media screen and (max-width: 1024px) {
-    .has-navbar-fixed-top {
-        padding-top: 92px !important;
-    }
     .navbar-link:after {
         border: 1px solid #ffffff;
         border-right: 0;
@@ -139,13 +136,15 @@ ul {
     .navbar-item:hover .navbar-dropdown {
         display: block;
     }
-    .navbar-menu {
-        padding: 0px;
-    }
     .color-environment {
         color: #fff;
     }
-    .navbar-item.has-dropdown {
-        width: 100%;
-    }
+}
+
+.select {
+    width: 100%;
+}
+
+.select select {
+    width: 100%;
 }

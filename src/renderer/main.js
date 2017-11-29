@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import 'bulma/css/bulma.css'
+import './assets/css/bulma.css'
 import './assets/css/style.css'
 import App from './App'
 import router from './router'

@@ -3,7 +3,7 @@
   <div id="app">
     <navbar></navbar>
     <tab></tab>
-    <div class="content">
+    <div class="content is-small small">
         <router-view></router-view>
     </div>
   </div>
