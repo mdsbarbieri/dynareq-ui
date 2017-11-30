@@ -2,10 +2,8 @@ import { Actions } from "../../assets/js/Core";
 
 export default {
     name: 'register-component',
-    store: ['action'],
+    store: ['actions', 'register'],
     data() {
-        return {
-            actions: Actions
-        }
+        return {}
     }
 }

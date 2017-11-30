@@ -2,12 +2,8 @@ import { Environments } from "../../assets/js/Core";
 
 export default {
     name: 'register-component',
+    store: ['global', 'environments'],
     components: {},
-    data() {
-        return {
-            environments: Environments
-        }
-    },
     created() {
         // this.fetchData();
     },

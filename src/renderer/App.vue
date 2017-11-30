@@ -23,14 +23,26 @@
 <script>
     import Navbar from '@/components/Navbar';
     import Tab from '@/components/Tab';
+    import {
+        get
+    } from './assets/js/Data'
+
     export default {
         components: {
             Navbar,
             Tab
         },
+        store: ['global', 'environments', 'actions'],
         name: 'dynareq-ui',
-        store: {
-            global: 'global'
+        created() {
+            this.loadData();
+        },
+        methods: {
+            loadData() {
+                var data = get();
+                this.environments = data.environments;
+                this.actions = data.actions;
+            }
         }
     }
 </script>

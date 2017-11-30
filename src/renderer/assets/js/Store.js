@@ -5,11 +5,15 @@ export default {
             isProduction: true
         }
     },
-    action: {
-        actionType: ""
+    register: {
+        action: {
+            actionType: ""
+        }
     },
     request: {
         environment: "",
         action: ""
-    }
+    },
+    actions: {},
+    environments: {}
 };
