@@ -29,7 +29,7 @@ export default {
             this.register.environment.message = ""
         },
         addEnvironment() {
-            if (!this.register.action.isValid) {
+            if (!this.register.environment.isValid) {
                 return;
             }
 
@@ -48,7 +48,8 @@ export default {
                 "hosts": []
             }
 
-            this.environments.push(environment)
+            this.$store.environments.push(environment)
+            this.$forceUpdate()
             update({ environments: this.environments })
             this.register.environment.password = '';
             this.register.environment.user = '';
@@ -59,21 +60,19 @@ export default {
             if (!value) {
                 return;
             }
-            var environment = _.find(this.environments, { id: id });
 
-            if (!environment) {
-                return;
-            }
-
-            var host = {
-                "id": removeSpecialChar(value),
-                "ip": value
-            }
-
-            environment.hosts.push(host)
-            this.register.environment.host[id] = "";
-            this.$forceUpdate()
-            update({ environments: this.environments });
+            this.$store.environments.forEach((env, idx, elem) => {
+                if (_.isEqual(env.id, id)) {
+                    var host = {
+                        "id": removeSpecialChar(value),
+                        "ip": value
+                    }
+                    env.hosts.push(host)
+                    this.register.environment.host[id] = "";
+                    this.$forceUpdate()
+                    update({ environments: env });
+                }
+            })
         },
         addHostArr(id) {
             var value = this.register.environment.hostArr[id];
@@ -98,7 +97,7 @@ export default {
 
                         if (_.isEqual(index, splitted.length - 1)) {
                             ref.$forceUpdate();
-                            ref.register.environment.host[id] = "";
+                            ref.register.environment.hostArr[id] = "";
                             update({ environments: elem });
                         }
                     });
@@ -115,11 +114,11 @@ export default {
                         if (_.isEqual(host.id, id)) {
                             _.remove(hElem, { id: host.id });
                             this.$forceUpdate();
+                            update({ environments: this.$store.environments });
                         }
                     })
                 }
             })
-            update({ environments: this.$store.environments });
         },
         removeEnvironment(id) {
             this.$store.environments.forEach((env, idx, elem) => {
