@@ -1,4 +1,4 @@
-import { Actions, Environments } from "../../assets/js/Core";
+import { Actions, Environments } from "../../scripts/Core";
 
 export default {
     name: 'register-component',

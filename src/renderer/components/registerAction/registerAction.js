@@ -1,4 +1,4 @@
-import { Actions } from "../../assets/js/Core";
+import { Actions } from "../../scripts/Core";
 
 export default {
     name: 'register-component',

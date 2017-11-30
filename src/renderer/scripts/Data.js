@@ -29,31 +29,24 @@ function createFolderIfNotExist(destFile) {
 function get() {
     let environments = [];
     let actions = [];
-
-    console.log()
-
-    let promiseAction = new Promise((resolve, reject) => {
-        let fullPath;
-        let fileInfo;
-        fs.readdirSync(dataFolder).forEach(fileName => {
-            fullPath = path.join(dataFolder, fileName);
-            fileInfo = path.parse(fullPath);
-            fullPath.split('\\').join('/')
-            if (fileInfo.name.startsWith(envPrefix)) {
-                let envData = jsonfile.readFileSync(fullPath);
-                envData.id = fileInfo.name.replace(envPrefix, '');
-                environments.push(envData);
-            } else if (fileInfo.ext === '.json' && fileInfo.name === actionsFileName) {
-                actions = jsonfile.readFileSync(fullPath);
-            }
-        });
-    })
+    let fullPath;
+    let fileInfo;
+    fs.readdirSync(dataFolder).forEach(fileName => {
+        fullPath = path.join(dataFolder, fileName);
+        fileInfo = path.parse(fullPath);
+        if (fileInfo.name.startsWith(envPrefix)) {
+            let envData = jsonfile.readFileSync(fullPath);
+            envData.id = fileInfo.name.replace(envPrefix, '');
+            environments.push(envData);
+        } else if (fileInfo.ext === '.json' && fileInfo.name === actionsFileName) {
+            actions = jsonfile.readFileSync(fullPath);
+        }
+    });
 
     return { actions, environments }
 }
 
 function update(data) {
-
     createFolderIfNotExist(dataFolder);
 
     if (data.environments) {
@@ -69,6 +62,7 @@ function update(data) {
             fs.writeFileSync(path.join(dataFolder, fileName), JSON.stringify(env));
         });
     }
+
     if (data.actions) {
         let fileName = path.join(dataFolder, actionsFileName + fileExt);
         fs.writeFileSync(fileName, JSON.stringify(data.actions));

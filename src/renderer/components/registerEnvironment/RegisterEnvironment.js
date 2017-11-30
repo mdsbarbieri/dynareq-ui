@@ -1,4 +1,4 @@
-import { Environments } from "../../assets/js/Core";
+import { Environments } from "../../scripts/Core";
 
 export default {
     name: 'register-component',

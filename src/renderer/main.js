@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import './assets/css/bulma.css'
 import './assets/css/style.css'
-import Store from './assets/js/Store'
+import Store from './scripts/Store'
 import App from './App'
 import router from './router'
 import VueStash from 'vue-stash';

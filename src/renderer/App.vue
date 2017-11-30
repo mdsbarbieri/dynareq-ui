@@ -25,7 +25,7 @@
     import Tab from '@/components/Tab';
     import {
         get
-    } from './assets/js/Data'
+    } from './scripts/Data'
 
     export default {
         components: {
