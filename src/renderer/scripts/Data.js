@@ -31,6 +31,7 @@ function get() {
     let actions = [];
     let fullPath;
     let fileInfo;
+
     fs.readdirSync(dataFolder).forEach(fileName => {
         fullPath = path.join(dataFolder, fileName);
         fileInfo = path.parse(fullPath);
@@ -42,13 +43,11 @@ function get() {
             actions = jsonfile.readFileSync(fullPath);
         }
     });
-
     return { actions, environments }
 }
 
 function update(data) {
     createFolderIfNotExist(dataFolder);
-
     if (data.environments) {
         data.environments.forEach(env => {
             let fileName = '';
@@ -62,13 +61,22 @@ function update(data) {
             fs.writeFileSync(path.join(dataFolder, fileName), JSON.stringify(env));
         });
     }
-
     if (data.actions) {
         let fileName = path.join(dataFolder, actionsFileName + fileExt);
         fs.writeFileSync(fileName, JSON.stringify(data.actions));
     }
-
 }
+
+function remove(id) {
+    let fileName = '';
+    if (!id) {
+        return;
+    }
+    fileName = envPrefix + id + fileExt;
+    fs.unlinkSync(path.join(dataFolder, fileName));
+}
+
 
 export { get };
 export { update };
+export { remove };

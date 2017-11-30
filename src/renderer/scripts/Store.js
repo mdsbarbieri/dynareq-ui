@@ -8,6 +8,11 @@ export default {
     register: {
         action: {
             actionType: ""
+        },
+        environment: {
+            message: "",
+            host: {},
+            hostArr: {}
         }
     },
     request: {

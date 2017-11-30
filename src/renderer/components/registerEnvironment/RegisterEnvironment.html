@@ -9,7 +9,7 @@
                         <div class="field">
                             <label class="label">Environment</label>
                             <div class="control">
-                                <input class="input" type="text" placeholder="Environment">
+                                <input class="input" v-model="register.environment.name" required type="text" placeholder="Environment">
                             </div>
                         </div>
                     </div>
@@ -17,7 +17,7 @@
                         <div class="field">
                             <label class="label">User</label>
                             <div class="control">
-                                <input class="input" type="text" placeholder="User">
+                                <input class="input" v-model="register.environment.user" required type="text" placeholder="User">
                             </div>
                         </div>
                     </div>
@@ -25,41 +25,52 @@
                         <div class="field">
                             <label class="label">Password</label>
                             <div class="control">
-                                <input class="input" type="password" placeholder="Password">
+                                <input class="input" v-model="register.environment.password" required type="password" placeholder="Password">
                             </div>
                         </div>
+                    </div>
+                    <div class="column">
+                        <label class="checkbox">
+                            <input type="checkbox"  v-model="register.environment.isProduction"/>
+                            Is Production
+                        </label>
                     </div>
                 </div>
             </div>
             <div class="column ">
-                <a class="button w-100 is-info is-outlined m-t-24">
+                <a class="button w-100 is-info is-outlined m-t-24" :disabled="!register.environment.isValid" v-on:click="addEnvironment()">
                     Add Environment
                 </a>
             </div>
         </div>
     </div>
+    <article class="message is-danger is-small" v-if="register.environment.message">
+        <div class="message-body">
+            {{register.environment.message}}
+        </div>
+    </article>
     <hr>
     <h4 class="title">Environment List</h4>
     <div class="box b-0 p-0" v-for="item in environments">
         <div class="relative title-content" v-bind:class="{ isProduction: item.isProduction}">
             <p class="reset">{{ item.name }}</p>
-            <span class="delete remove" aria-label="delete"></span>
+            <span class="delete remove" aria-label="delete" v-on:click="removeEnvironment(item.id)"></span>
         </div>
         <div>
             <ul class="reset">
                 <li class="host-item" v-for="host in item.hosts">
                     {{host.ip}}
-                    <span class="delete remove" aria-label="delete"></span>
+                    <span class="delete remove" aria-label="delete" v-on:click="removeHost(item.id, host.id)"></span>
                 </li>
                 <li class="host-item">
                     <div class="columns">
                         <div class="column is-four-fifths ">
                             <div class="field has-addons">
                                 <div class="control w-100 ">
-                                    <input class="input" type="text" placeholder="Add list separated by ','">
+                                    <input class="input" type="text" v-model="register.environment.hostArr[item.id]" placeholder="Add list separated by ','">
                                 </div>
                                 <div class="control">
-                                    <a class="button is-info is-outlined">
+                                    <a class="button is-info is-outlined" v-on:click="addHostArr(item.id)">
                                         Add List
                                     </a>
                                 </div>
@@ -68,10 +79,10 @@
                         <div class="column">
                             <div class="field has-addons">
                                 <div class="control">
-                                    <input class="input" type="text" placeholder="Add Single">
+                                    <input class="input" type="text" v-model="register.environment.host[item.id]" placeholder="Add Single">
                                 </div>
                                 <div class="control">
-                                    <a class="button is-info is-outlined">
+                                    <a class="button is-info is-outlined" v-on:click="addHost(item.id)">
                                         Add
                                     </a>
                                 </div>
