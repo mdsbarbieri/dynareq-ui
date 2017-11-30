@@ -1,0 +1,55 @@
+<section>
+    <h4 class="title">Execute Request</h4>
+    <div class="field has-addons">
+        <div class="columns w-100 ">
+            <div class="column is-four-fifths">
+                <div class="columns">
+                    <div class="column">
+                        <div class="field">
+                            <label class="label">Environments</label>
+                            <div class="control">
+                                <div class="select">
+                                    <select v-model="request.environment">
+                                        <option value="" selected>Select</option>
+                                        <option :value="item.id" v-for="item in environments">{{item.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="field">
+                            <label class="label">Action</label>
+                            <div class="control">
+                                <div class="select">
+                                    <select v-model="request.action">
+                                        <option value="" selected>Select</option>
+                                        <option :value="item.id" v-for="item in actions">{{item.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column ">
+                <a class="button w-100 is-info is-outlined m-t-26">
+                    Execute
+                </a>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <h4 class="title">Status</h4>
+    <progress class="progress is-info" value="15" max="100">15%</progress>
+    <div class="box console">
+        <ul class="m-0">
+            <li>$Execute {{request.action}} in environment {{request.environment}}</li>
+            <span v-for="item in environments">
+                <li  v-for="host in item.hosts">${{host}} /
+                    <red>OK</red>
+                </li>
+            </span>
+        </ul>
+    </div>
+</section>

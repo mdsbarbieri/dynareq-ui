@@ -7744,11 +7744,6 @@ a.navbar-link.is-active:not(:hover) {
     background-color: transparent;
 }
 
-.navbar-item.has-dropdown:hover .navbar-link,
-.navbar-item.has-dropdown.is-active .navbar-link {
-    background-color: whitesmoke;
-}
-
 .pagination {
     font-size: 1rem;
     margin: -0.25rem;
