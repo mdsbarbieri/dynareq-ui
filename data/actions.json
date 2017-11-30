@@ -1,0 +1,1 @@
+[{"component":"/renner/commerce/mundipagg/MundiPaggTools/","propertyName":"loggingTrace","newValue":"false"},{"component":"/atg/commerce/inventory/InventoryCache/","invokeMethod":"flush"},{"component":"/atg/commerce/inventory/InventoryCache/","invokeMethod":"echo"}]
