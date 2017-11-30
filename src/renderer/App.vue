@@ -10,8 +10,8 @@
     <div class="container">
         <div class="content has-text-centered">
         <p>
-            <strong>DynareqUI</strong> by <a href="javascript:void(0)">Eduardo Barbieri</a> and <a href="javascript:void(0)">Matheus Barbieri</a>. The source code is licensed
-            <a href="javascript:void(0)">MIT</a>.
+            <strong>Dynareq-UI</strong> by <a href="https://github.com/edubarbieri/" target="_blank">Eduardo Barbieri</a> and <a href="https://github.com/mdsbarbieri/"  target="_blank">Matheus Barbieri</a>. The source code is licensed
+            <a href="http://opensource.org/licenses/mit-license.php"  target="_blank">MIT</a>.
         </p>
         </div>
     </div>
