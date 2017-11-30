@@ -46,9 +46,8 @@
         <ul class="m-0">
             <li>$Execute {{request.action}} in environment {{request.environment}}</li>
             <span v-for="item in environments">
-                <li  v-for="host in item.hosts">${{host}} /
-                    <red>OK</red>
-                </li>
+                <li  v-for="host in item.hosts">${{host}} / <span class="green">OK</span>
+            </li>
             </span>
         </ul>
     </div>
