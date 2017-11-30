@@ -186,3 +186,10 @@ ul {
     color: #000;
     font-weight: bold;
 }
+
+.production {
+    background-color: #ffe5e5;
+    padding: 15px;
+    border-radius: 7px;
+    border: 1px solid #ff5d5d;
+}

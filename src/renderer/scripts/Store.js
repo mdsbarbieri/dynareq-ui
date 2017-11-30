@@ -1,10 +1,4 @@
 export default {
-    global: {
-        environment: {
-            name: "Production",
-            isProduction: true
-        }
-    },
     register: {
         action: {
             message: "",
@@ -17,7 +11,9 @@ export default {
         }
     },
     request: {
-        environment: "",
+        environment: {
+            id: ""
+        },
         action: ""
     },
     actions: {},

@@ -9,7 +9,7 @@
                             <label class="label">Environments</label>
                             <div class="control">
                                 <div class="select">
-                                    <select v-model="request.environment">
+                                    <select v-model="request.environment.id">
                                         <option value="" selected>Select</option>
                                         <option :value="item.id" v-for="item in environments">{{item.name}}</option>
                                     </select>
@@ -39,12 +39,21 @@
             </div>
         </div>
     </div>
+    <article class="message is-danger" v-if="request.environment.isProduction">
+        <div class="message-header">
+            <p class="reset">WARNING</p>
+        </div>
+        <div class="message-body">
+            Current environment is PRODUCTION servers
+        </div>
+    </article>
     <hr>
+
     <h4 class="title">Status</h4>
     <progress class="progress is-info" value="15" max="100">15%</progress>
     <div class="box console">
         <ul class="m-0">
-            <li>$Execute {{request.action}} in environment {{request.environment}}</li>
+            <li>$Execute {{request.action}} in environment {{request.environment.id}}</li>
             <span v-for="item in environments">
                 <li  v-for="host in item.hosts">${{host.ip}} / <span class="green">OK</span>
             </li>

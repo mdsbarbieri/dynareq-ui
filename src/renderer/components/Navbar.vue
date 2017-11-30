@@ -5,36 +5,11 @@
                 <h1>DynareqUI</h1>
             </a>
         </div>
-        <div class="navbar-end navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link color-environment"  v-bind:class="{ isProduction: $store.global.environment.isProduction}" >
-                <div class="center">{{global.environment.name}}</div>
-            </a>
-            <div class="navbar-dropdown">
-                <a class="navbar-item" v-on:click="changeEnvironment('Production', true)">
-                    Production
-                </a>
-                <a class="navbar-item" v-on:click="changeEnvironment('HML', false)">
-                    HML
-                </a>
-                <a class="navbar-item" v-on:click="changeEnvironment('Local', false)">
-                    Local
-                </a>
-            </div>
-        </div>
     </nav>
 </template>
 <script>
     export default {
         name: 'navbar',
-        store: ['global'],
-        data: function() {
-            return {}
-        },
-        methods: {
-            changeEnvironment(environment, isProduction) {
-                this.global.environment.isProduction = isProduction;
-                this.global.environment.name = environment;
-            }
-        }
+        store: ['request']
     }
 </script>
