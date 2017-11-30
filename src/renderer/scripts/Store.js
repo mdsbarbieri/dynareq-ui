@@ -7,6 +7,7 @@ export default {
     },
     register: {
         action: {
+            message: "",
             actionType: ""
         },
         environment: {

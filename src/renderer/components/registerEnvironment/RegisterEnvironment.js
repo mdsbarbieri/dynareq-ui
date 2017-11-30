@@ -29,7 +29,7 @@ export default {
             this.register.environment.message = ""
         },
         addEnvironment() {
-            if (!this.register.environment.password || !this.register.environment.user || !this.register.environment.name) {
+            if (!this.register.action.isValid) {
                 return;
             }
 
