@@ -56,7 +56,9 @@ ipcMain.on('exportData', function(event, exportFolder, data) {
         title: 'dynarequi-data.json',
         defaultPath: exportFolder + '/dynarequi-data.json'
     }, function(result) {
-        fs.writeFileSync(result, JSON.stringify(data));
+        if (result) {
+            fs.writeFileSync(result, JSON.stringify(data));
+        }
     });
 });
 
@@ -69,10 +71,12 @@ ipcMain.on('importData', function(event, exportFolder, data) {
             ]
         },
         function(result) {
-            var file = jsonfile.readFileSync(result[0]);
-            if (file && file.environments && file.actions) {
-                update(file);
-                win.reload();
+            if (result) {
+                var file = jsonfile.readFileSync(result[0]);
+                if (file && file.environments && file.actions) {
+                    update(file);
+                    win.reload();
+                }
             }
         });
 });
