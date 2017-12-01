@@ -39,6 +39,35 @@
             </div>
         </div>
     </div>
+    <div v-if="request.actionObj.actionType">
+        <ul class="reset">
+            <li class="host-item">
+                <label>Path:</label> {{ request.actionObj.path }}
+            </li>
+            <li class="host-item">
+                <div class="columns">
+                    <div class="column" v-show="request.actionObj.actionType == 'invokeMethod'">
+                        <label>Method</label>
+                        <input class="input" type="text" v-model="request.actionObj.method" placeholder="Method">
+                    </div>
+                    <div class="column" v-show="request.actionObj.actionType == 'setValue'">
+                        <label>Property:</label>
+                        <input class="input" type="text" v-model="request.actionObj.property" placeholder="Property">
+                    </div>
+                    <div class="column" v-show="request.actionObj.actionType == 'setValue'">
+                        <label>Value:</label>
+                        <input class="input" type="text" v-model="request.actionObj.value" placeholder="Value">
+                    </div>
+                    <div class="column is-one-third">
+                        <a class="button m-t-17 w-100 is-info is-outlined m-t-24" :disabled="!request.actionObj.isValid" v-on:click="saveRequestAction()">
+                            Save
+                        </a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+    </div>
     <article class="message is-danger" v-if="request.environment.isProduction">
         <div class="message-header">
             <p class="reset">WARNING</p>

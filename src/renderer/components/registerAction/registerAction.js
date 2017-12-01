@@ -23,11 +23,11 @@ export default {
                 isValid = false;
             }
 
-            if (_.isEqual(this.register.action.actionType, 'invokeMethod') && !this.register.action.methodName) {
+            if (_.isEqual(this.register.action.actionType, 'invokeMethod') && !this.register.action.method) {
                 isValid = false;
             }
 
-            if (_.isEqual(this.register.action.actionType, 'setValue') && (!this.register.action.property || !this.register.action.value)) {
+            if (_.isEqual(this.register.action.actionType, 'setValue') && !this.register.action.property) {
                 isValid = false;
             }
 

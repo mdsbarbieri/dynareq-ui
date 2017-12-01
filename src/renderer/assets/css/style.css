@@ -200,10 +200,23 @@ ul {
 
 .list-list {
     display: none;
+    border: 1px solid rgba(50, 115, 220, 0.27);
+    border-top: 0px;
 }
 
 .list-title {
     padding-left: 25px;
+    cursor: pointer;
+}
+
+.list-title.expanded {
+    border: 1px solid rgba(50, 115, 220, 0.27);
+    border-bottom: 0px;
+    border-top: 0px;
+}
+
+.title+.box .expanded {
+    border-top: 1px solid rgba(50, 115, 220, 0.27);
 }
 
 .list-title.expanded:before {
@@ -228,4 +241,12 @@ ul {
     margin-top: -0.375em;
     left: 10px;
     top: 55%;
+}
+
+.m-t-17 {
+    margin-top: 17px;
+}
+
+.box {
+    margin-bottom: 0px !important;
 }

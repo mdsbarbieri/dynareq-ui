@@ -89,17 +89,20 @@ export default {
             this.environments.forEach((env, idx, elem) => {
                 if (_.isEqual(env.id, id)) {
                     splitted.forEach(function(elemValue, index, array) {
-                        var host = {
-                            "id": removeSpecialChar(elemValue),
-                            "ip": elemValue
-                        }
-                        env.hosts.push(host);
+                        if (elemValue) {
+                            var host = {
+                                "id": removeSpecialChar(elemValue),
+                                "ip": elemValue
+                            }
+                            env.hosts.push(host);
 
-                        if (_.isEqual(index, splitted.length - 1)) {
-                            ref.register.environment.hostArr[id] = "";
-                            update({ environments: elem });
-                            ref.$forceUpdate();
+                            if (_.isEqual(index, splitted.length - 1)) {
+                                ref.register.environment.hostArr[id] = "";
+                                update({ environments: elem });
+                                ref.$forceUpdate();
+                            }
                         }
+
                     });
                 }
             })
