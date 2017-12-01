@@ -76,11 +76,11 @@
     <hr>
     <h4 class="title">Action List</h4>
     <div class="box b-0 p-0" v-for="item in actions">
-        <div class="relative title-content" v-bind:class="{ isProduction: item.isProduction}">
+        <div class="relative title-content list-title" v-on:click="toogleExpand(item.id)" v-bind:class="{ isProduction: item.isProduction, expanded: register.action.expanded[item.id]}">
             <p class="reset">{{ item.name }}</p>
             <span class="delete remove" aria-label="delete" v-on:click="removeAction(item.id)"></span>
         </div>
-        <div>
+        <div class="list-list">
             <ul class="reset">
                 <li class="host-item">
                     <label>Path:</label> {{ item.path }}

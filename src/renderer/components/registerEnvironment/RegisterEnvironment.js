@@ -128,6 +128,10 @@ export default {
                     this.$forceUpdate();
                 }
             })
+        },
+        toogleExpand(id) {
+            this.register.environment.expanded[id] = !this.register.environment.expanded[id];
+            this.$forceUpdate();
         }
     }
 }

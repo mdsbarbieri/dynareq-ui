@@ -18,7 +18,9 @@ function createWindow() {
     mainWindow = new BrowserWindow({
         height: 563,
         useContentSize: true,
-        width: 1000
+        width: 1000,
+        autoHideMenuBar: true,
+        titleBarStyle: 'hidden-inset'
     })
 
     mainWindow.loadURL(winURL)
@@ -70,7 +72,7 @@ ipcMain.on('importData', function(event, exportFolder, data) {
             var file = jsonfile.readFileSync(result[0]);
             if (file && file.environments && file.actions) {
                 update(file);
-                win.reload()
+                win.reload();
             }
         });
 });

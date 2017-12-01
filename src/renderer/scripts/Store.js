@@ -2,12 +2,14 @@ export default {
     register: {
         action: {
             message: "",
-            actionType: ""
+            actionType: "",
+            expanded: {}
         },
         environment: {
             message: "",
             host: {},
-            hostArr: {}
+            hostArr: {},
+            expanded: {}
         }
     },
     request: {

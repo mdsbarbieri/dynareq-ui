@@ -52,11 +52,11 @@
     <hr>
     <h4 class="title">Environment List</h4>
     <div class="box b-0 p-0" v-for="item in environments">
-        <div class="relative title-content" v-bind:class="{ isProduction: item.isProduction}">
+        <div class="relative title-content list-title" v-on:click="toogleExpand(item.id)" v-bind:class="{ isProduction: item.isProduction, expanded: register.environment.expanded[item.id]}">
             <p class="reset">{{ item.name }}</p>
             <span class="delete remove" aria-label="delete" v-on:click="removeEnvironment(item.id)"></span>
         </div>
-        <div>
+        <div class="list-list">
             <ul class="reset">
                 <li class="host-item" v-for="host in item.hosts">
                     {{host.ip}}

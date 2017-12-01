@@ -83,6 +83,10 @@ export default {
                     this.$forceUpdate();
                 }
             })
+        },
+        toogleExpand(id) {
+            this.register.action.expanded[id] = !this.register.action.expanded[id];
+            this.$forceUpdate();
         }
     }
 }
