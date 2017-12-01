@@ -250,3 +250,11 @@ ul {
 .box {
     margin-bottom: 0px !important;
 }
+
+.isMac {
+    display: inline-block
+}
+
+.isMac .navbar-brand {
+    float: right
+}

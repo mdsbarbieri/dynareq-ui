@@ -39,6 +39,14 @@
             </div>
         </div>
     </div>
+    <article class="message is-danger" v-if="request.environment.isProduction">
+        <div class="message-header">
+            <p class="reset">WARNING</p>
+        </div>
+        <div class="message-body">
+            Current environment is PRODUCTION servers
+        </div>
+    </article>
     <div v-if="request.actionObj.actionType">
         <ul class="reset">
             <li class="host-item">
@@ -68,14 +76,7 @@
         </ul>
 
     </div>
-    <article class="message is-danger" v-if="request.environment.isProduction">
-        <div class="message-header">
-            <p class="reset">WARNING</p>
-        </div>
-        <div class="message-body">
-            Current environment is PRODUCTION servers
-        </div>
-    </article>
+
     <hr>
 
     <h4 class="title">Status</h4>
