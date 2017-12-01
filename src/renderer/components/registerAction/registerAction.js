@@ -54,7 +54,6 @@ export default {
                 return;
             }
 
-
             var action = {
                 id: generatedId,
                 name: this.register.action.name,
@@ -66,13 +65,15 @@ export default {
             }
 
             this.actions.push(action)
-            update({ actions: this.actions })
             this.register.action.name = "";
             this.register.action.actionType = "";
             this.register.action.path = "";
             this.register.action.method = "";
             this.register.action.property = "";
             this.register.action.value = "";
+            update({ actions: this.actions });
+            this.$forceUpdate();
+
         },
         removeAction(id) {
             this.$store.actions.forEach((act, idx, elem) => {

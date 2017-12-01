@@ -3,14 +3,19 @@ import fs from 'fs';
 import path from 'path';
 import jsonfile from 'jsonfile';
 
-const dataFolder = os.homedir() + '/dynareq-ui/data';
+const dataFolder = os.homedir() + '\\dynareq-ui\\data';
+const exportFolder = os.homedir() + '\\dynareq-ui\\export';
 
 const envPrefix = "env-";
 const actionsFileName = "actions";
 const fileExt = ".json";
+const jsonRegex = /.json/;
 
 function createFolderIfNotExist(destFile) {
-    const targetDir = path.parse(destFile).dir;
+    let targetDir = destFile;
+    if (jsonRegex.test(destFile)) {
+        targetDir = path.parse(destFile).dir;
+    }
     const initParent = path.isAbsolute(targetDir) ? '/' : '';
     // Use `path.sep`, to avoid cross-platform issues.
     targetDir.split(path.sep).reduce((parentDir, childDir) => {
@@ -32,18 +37,24 @@ function get() {
     let fullPath;
     let fileInfo;
 
-    fs.readdirSync(dataFolder).forEach(fileName => {
-        fullPath = path.join(dataFolder, fileName);
-        fileInfo = path.parse(fullPath);
-        if (fileInfo.name.startsWith(envPrefix)) {
-            let envData = jsonfile.readFileSync(fullPath);
-            envData.id = fileInfo.name.replace(envPrefix, '');
-            environments.push(envData);
-        } else if (fileInfo.ext === '.json' && fileInfo.name === actionsFileName) {
-            actions = jsonfile.readFileSync(fullPath);
-        }
-    });
-    return { actions, environments }
+    try {
+        fs.readdirSync(dataFolder).forEach(fileName => {
+            fullPath = path.join(dataFolder, fileName);
+            fileInfo = path.parse(fullPath);
+            if (fileInfo.name.startsWith(envPrefix)) {
+                let envData = jsonfile.readFileSync(fullPath);
+                envData.id = fileInfo.name.replace(envPrefix, '');
+                environments.push(envData);
+            } else if (fileInfo.ext === '.json' && fileInfo.name === actionsFileName) {
+                actions = jsonfile.readFileSync(fullPath);
+            }
+        });
+        return { actions, environments }
+    } catch (error) {
+        createFolderIfNotExist(dataFolder);
+        createFolderIfNotExist(exportFolder);
+        return { actions: [], environments: [] }
+    }
 }
 
 function update(data) {
@@ -57,7 +68,6 @@ function update(data) {
                 fileName = envPrefix + env.name.toLowerCase().replace(/ /g, '_') + fileExt;
             }
 
-            delete env.id;
             fs.writeFileSync(path.join(dataFolder, fileName), JSON.stringify(env));
         });
     }
@@ -80,3 +90,4 @@ function remove(id) {
 export { get };
 export { update };
 export { remove };
+export { exportFolder };

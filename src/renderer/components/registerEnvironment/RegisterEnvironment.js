@@ -48,12 +48,12 @@ export default {
                 "hosts": []
             }
 
-            this.$store.environments.push(environment)
-            this.$forceUpdate()
-            update({ environments: this.environments })
+            this.environments.push(environment)
             this.register.environment.password = '';
             this.register.environment.user = '';
             this.register.environment.name = ''
+            update({ environments: this.environments })
+            this.$forceUpdate()
         },
         addHost(id) {
             var value = this.register.environment.host[id];
@@ -61,7 +61,7 @@ export default {
                 return;
             }
 
-            this.$store.environments.forEach((env, idx, elem) => {
+            this.environments.forEach((env, idx, elem) => {
                 if (_.isEqual(env.id, id)) {
                     var host = {
                         "id": removeSpecialChar(value),
@@ -69,8 +69,8 @@ export default {
                     }
                     env.hosts.push(host)
                     this.register.environment.host[id] = "";
-                    this.$forceUpdate()
                     update({ environments: env });
+                    this.$forceUpdate()
                 }
             })
         },
@@ -86,7 +86,7 @@ export default {
                 return;
             }
             var ref = this;
-            this.$store.environments.forEach((env, idx, elem) => {
+            this.environments.forEach((env, idx, elem) => {
                 if (_.isEqual(env.id, id)) {
                     splitted.forEach(function(elemValue, index, array) {
                         var host = {
@@ -96,9 +96,9 @@ export default {
                         env.hosts.push(host);
 
                         if (_.isEqual(index, splitted.length - 1)) {
-                            ref.$forceUpdate();
                             ref.register.environment.hostArr[id] = "";
                             update({ environments: elem });
+                            ref.$forceUpdate();
                         }
                     });
                 }
@@ -108,20 +108,20 @@ export default {
             if (!id) {
                 return;
             }
-            this.$store.environments.forEach((env, idx, elem) => {
+            this.environments.forEach((env, idx, elem) => {
                 if (_.isEqual(env.id, environmentId)) {
                     env.hosts.forEach((host, index, hElem) => {
                         if (_.isEqual(host.id, id)) {
                             _.remove(hElem, { id: host.id });
+                            update({ environments: this.environments });
                             this.$forceUpdate();
-                            update({ environments: this.$store.environments });
                         }
                     })
                 }
             })
         },
         removeEnvironment(id) {
-            this.$store.environments.forEach((env, idx, elem) => {
+            this.environments.forEach((env, idx, elem) => {
                 if (_.isEqual(env.id, id)) {
                     _.remove(elem, { id: env.id });
                     remove(env.id);

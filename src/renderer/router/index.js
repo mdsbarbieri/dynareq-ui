@@ -20,6 +20,11 @@ export default new Router({
             component: require('@/components/RegisterAction').default
         },
         {
+            path: '/config',
+            name: 'config',
+            component: require('@/components/Config').default
+        },
+        {
             path: '*',
             redirect: '/'
         }
