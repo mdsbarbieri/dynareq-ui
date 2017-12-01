@@ -2,9 +2,15 @@ import os from 'os';
 import fs from 'fs';
 import path from 'path';
 import jsonfile from 'jsonfile';
+import _ from "lodash";
 
-const dataFolder = os.homedir() + '\\dynareq-ui\\data';
-const exportFolder = os.homedir() + '\\dynareq-ui\\export';
+let dataFolder = os.homedir() + '\\dynareq-ui\\data';
+let exportFolder = os.homedir() + '\\dynareq-ui\\export';
+
+if (!_.isEqual(os.platform(), 'win32')) {
+    dataFolder = dataFolder.replace(/\\/g, '/');
+    exportFolder = exportFolder.replace(/\\/g, '/');
+}
 
 const envPrefix = "env-";
 const actionsFileName = "actions";
@@ -13,6 +19,7 @@ const jsonRegex = /.json/;
 
 function createFolderIfNotExist(destFile) {
     let targetDir = destFile;
+
     if (jsonRegex.test(destFile)) {
         targetDir = path.parse(destFile).dir;
     }
