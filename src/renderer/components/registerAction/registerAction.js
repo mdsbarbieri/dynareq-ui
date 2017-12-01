@@ -23,7 +23,7 @@ export default {
                 isValid = false;
             }
 
-            if (_.isEqual(this.register.action.actionType, 'invokeMethod') && !this.register.action.method) {
+            if (_.isEqual(this.register.action.actionType, 'invokeMethod') && !this.register.action.methodName) {
                 isValid = false;
             }
 
@@ -48,23 +48,38 @@ export default {
                 return;
             }
 
-            var generatedId = removeSpecialChar(this.register.action.name).toLowerCase()
-            if (!!_.find(this.actions, { id: generatedId }) || !!_.find(this.actions, { name: this.register.environment.name })) {
-                this.setMessage('This action is already registered.');
-                return;
-            }
+            if (!this.register.action.editId) {
+                var generatedId = removeSpecialChar(this.register.action.name).toLowerCase()
+                if (!!_.find(this.actions, { id: generatedId }) || !!_.find(this.actions, { name: this.register.environment.name })) {
+                    this.setMessage('This action is already registered.');
+                    return;
+                }
 
-            var action = {
-                id: generatedId,
-                name: this.register.action.name,
-                type: this.register.action.actionType,
-                path: this.register.action.path,
-                property: this.register.action.method,
-                value: this.register.action.property,
-                method: this.register.action.value
-            }
+                var action = {
+                    id: generatedId,
+                    name: this.register.action.name,
+                    type: this.register.action.actionType,
+                    path: this.register.action.path,
+                    actionType: this.register.action.actionType,
+                    method: (_.isEqual(this.register.action.actionType, 'invokeMethod')) ? this.register.action.method : '',
+                    property: (_.isEqual(this.register.action.actionType, 'setValue')) ? this.register.action.property : '',
+                    value: (_.isEqual(this.register.action.actionType, 'setValue')) ? this.register.action.value : ''
+                }
 
-            this.actions.push(action)
+                this.actions.push(action)
+            } else {
+                var action = _.find(this.actions, { id: this.register.action.editId });
+                if (action) {
+                    action.name = this.register.action.name;
+                    action.type = this.register.action.actionType;
+                    action.path = this.register.action.path;
+                    action.method = (_.isEqual(this.register.action.actionType, 'invokeMethod')) ? this.register.action.method : '';
+                    action.property = (_.isEqual(this.register.action.actionType, 'setValue')) ? this.register.action.property : '';
+                    action.actionType = this.register.action.actionType;
+                    action.value = (_.isEqual(this.register.action.actionType, 'setValue')) ? this.register.action.value : '';
+                }
+            }
+            this.register.action.editId = "";
             this.register.action.name = "";
             this.register.action.actionType = "";
             this.register.action.path = "";
@@ -86,6 +101,21 @@ export default {
         },
         toogleExpand(id) {
             this.register.action.expanded[id] = !this.register.action.expanded[id];
+            this.$forceUpdate();
+        },
+        editAction(id) {
+            var action = _.find(this.actions, { id: id });
+            if (!action) {
+                return;
+            }
+
+            this.register.action.editId = id;
+            this.register.action.name = action.name;
+            this.register.action.actionType = action.actionType;
+            this.register.action.path = action.path;
+            this.register.action.method = action.method;
+            this.register.action.property = action.property;
+            this.register.action.value = action.value;
             this.$forceUpdate();
         }
     }

@@ -35,7 +35,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="column" v-if="register.action.actionType == 'invokeMethod'">
+                    <div class="column" v-show="register.action.actionType == 'invokeMethod'">
                         <div class="field">
                             <label class="label">Method</label>
                             <div class="control">
@@ -43,7 +43,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="column" v-if="register.action.actionType == 'setValue'">
+                    <div class="column" v-show="register.action.actionType == 'setValue'">
                         <div class="field">
                             <label class="label">Property</label>
                             <div class="control">
@@ -51,7 +51,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="column" v-if="register.action.actionType == 'setValue'">
+                    <div class="column" v-show="register.action.actionType == 'setValue'">
                         <div class="field">
                             <label class="label">Value</label>
                             <div class="control">
@@ -93,6 +93,16 @@
                 </li>
                 <li class="host-item" v-if="item.value">
                     <label>Value:</label> {{ item.value }}
+                </li>
+                <li class="host-item">
+                    <div class="columns">
+                        <div class="column is-three-quarters"></div>
+                        <div class="column">
+                            <a class="button w-100 is-info is-outlined" v-on:click="editAction(item.id)">
+                                Edit Action
+                            </a>
+                        </div>
+                    </div>
                 </li>
             </ul>
         </div>
