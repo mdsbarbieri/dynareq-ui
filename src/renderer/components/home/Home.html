@@ -30,6 +30,14 @@
                             </div>
                         </div>
                     </div>
+                    <div class="column" v-if="selectedAction.type === 'setValue'">
+                        <div class="field">
+                            <label class="label">Value</label>
+                            <div class="control">
+                                <input type="text" class="input" v-model="selectedAction.value">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="column ">
@@ -50,7 +58,7 @@
     <hr>
 
     <h4 class="title">Status</h4>
-    <progress class="progress is-info" :value="progressPercent" max="100">15%</progress>
+    <progress class="progress is-info" :value="progressPercent" max="100">{{progressPercent}}%</progress>
     <div class="box console">
         <ul class="m-0">
             <li v-for="log in logs">
