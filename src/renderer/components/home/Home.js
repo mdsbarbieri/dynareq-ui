@@ -10,14 +10,14 @@ export default {
             logs: [],
             serverTotal: 0,
             serverDone: 0
-        }
+        };
     },
     computed: {
         progressPercent() {
             if (this.serverTotal === 0) {
                 return 0;
             }
-            return ((this.serverDone * 100) / this.serverTotal);
+            return (this.serverDone * 100) / this.serverTotal;
         }
     },
     methods: {
@@ -42,7 +42,7 @@ export default {
                     let log = {
                         message: requestData.host,
                         withStatus: true
-                    }
+                    };
                     console.log('Request data', requestData);
                     if (error) {
                         console.log('Error on execute operation', error);
@@ -54,4 +54,4 @@ export default {
             });
         }
     }
-}
+};

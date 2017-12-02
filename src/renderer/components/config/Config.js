@@ -1,13 +1,11 @@
-import _ from "lodash";
-import { dialog, ipcRenderer } from "electron";
-import { exportFolder } from "../../scripts/Data";
-
+import { ipcRenderer } from 'electron';
+import { exportFolder } from '../../scripts/Data';
 
 export default {
     name: 'register-component',
     store: ['global', 'request', 'environments', 'actions'],
     watch: {
-        'request.environment.id': 'setEnvironment',
+        'request.environment.id': 'setEnvironment'
     },
     methods: {
         importData() {
@@ -17,9 +15,10 @@ export default {
             var data = {
                 environments: this.environments,
                 actions: this.actions
-            }
+            };
 
             ipcRenderer.send('exportData', exportFolder, data);
         }
     }
 }
+;

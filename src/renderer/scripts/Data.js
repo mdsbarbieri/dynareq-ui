@@ -2,7 +2,7 @@ import os from 'os';
 import fs from 'fs';
 import path from 'path';
 import jsonfile from 'jsonfile';
-import _ from "lodash";
+import _ from 'lodash';
 
 let dataFolder = os.homedir() + '\\dynareq-ui\\data';
 let exportFolder = os.homedir() + '\\dynareq-ui\\export';
@@ -12,9 +12,9 @@ if (!_.isEqual(os.platform(), 'win32')) {
     exportFolder = exportFolder.replace(/\\/g, '/');
 }
 
-const envPrefix = "env-";
-const actionsFileName = "actions";
-const fileExt = ".json";
+const envPrefix = 'env-';
+const actionsFileName = 'actions';
+const fileExt = '.json';
 const jsonRegex = /.json/;
 
 function createFolderIfNotExist(destFile) {
@@ -56,11 +56,11 @@ function get() {
                 actions = jsonfile.readFileSync(fullPath);
             }
         });
-        return { actions, environments }
+        return { actions, environments };
     } catch (error) {
         createFolderIfNotExist(dataFolder);
         createFolderIfNotExist(exportFolder);
-        return { actions: [], environments: [] }
+        return { actions: [], environments: [] };
     }
 }
 
@@ -92,7 +92,6 @@ function remove(id) {
     fileName = envPrefix + id + fileExt;
     fs.unlinkSync(path.join(dataFolder, fileName));
 }
-
 
 export { get };
 export { update };

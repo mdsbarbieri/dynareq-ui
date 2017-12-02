@@ -1,6 +1,6 @@
-import _ from "lodash";
-import { removeSpecialChar } from "../../scripts/Util";
-import { update, remove } from "../../scripts/Data";
+import _ from 'lodash';
+import { removeSpecialChar } from '../../scripts/Util';
+import { update, remove } from '../../scripts/Data';
 
 export default {
     name: 'register-component',
@@ -12,7 +12,7 @@ export default {
     watch: {
         'register.environment.password': 'isValid',
         'register.environment.user': 'isValid',
-        'register.environment.description': 'isValid',
+        'register.environment.description': 'isValid'
     },
     methods: {
         isValid() {
@@ -23,37 +23,37 @@ export default {
             var aux = this.removeErrorMessage;
             setTimeout(function() {
                 aux();
-            }, 3000)
+            }, 3000);
         },
         removeErrorMessage() {
-            this.register.environment.message = ""
+            this.register.environment.message = '';
         },
         addEnvironment() {
             if (!this.register.environment.isValid) {
                 return;
             }
 
-            var generatedId = removeSpecialChar(this.register.environment.name).toLowerCase()
+            var generatedId = removeSpecialChar(this.register.environment.name).toLowerCase();
             if (!!_.find(this.environments, { id: generatedId }) || !!_.find(this.environments, { name: this.register.environment.name })) {
                 this.setMessage('This environment is already registered.');
                 return;
             }
 
             var environment = {
-                "id": generatedId,
-                "name": this.register.environment.name,
-                "user": this.register.environment.user,
-                "password": this.register.environment.password,
-                "isProduction": this.register.environment.isProduction,
-                "hosts": []
-            }
+                'id': generatedId,
+                'name': this.register.environment.name,
+                'user': this.register.environment.user,
+                'password': this.register.environment.password,
+                'isProduction': this.register.environment.isProduction,
+                'hosts': []
+            };
 
-            this.environments.push(environment)
+            this.environments.push(environment);
             this.register.environment.password = '';
             this.register.environment.user = '';
-            this.register.environment.name = ''
-            update({ environments: this.environments })
-            this.$forceUpdate()
+            this.register.environment.name = '';
+            update({ environments: this.environments });
+            this.$forceUpdate();
         },
         addHost(id) {
             var value = this.register.environment.host[id];
@@ -64,15 +64,15 @@ export default {
             this.environments.forEach((env, idx, elem) => {
                 if (_.isEqual(env.id, id)) {
                     var host = {
-                        "id": removeSpecialChar(value),
-                        "ip": value
-                    }
-                    env.hosts.push(host)
-                    this.register.environment.host[id] = "";
+                        'id': removeSpecialChar(value),
+                        'ip': value
+                    };
+                    env.hosts.push(host);
+                    this.register.environment.host[id] = '';
                     update({ environments: env });
-                    this.$forceUpdate()
+                    this.$forceUpdate();
                 }
-            })
+            });
         },
         addHostArr(id) {
             var value = this.register.environment.hostArr[id];
@@ -91,21 +91,20 @@ export default {
                     splitted.forEach(function(elemValue, index, array) {
                         if (elemValue) {
                             var host = {
-                                "id": removeSpecialChar(elemValue),
-                                "ip": elemValue
-                            }
+                                'id': removeSpecialChar(elemValue),
+                                'ip': elemValue
+                            };
                             env.hosts.push(host);
 
                             if (_.isEqual(index, splitted.length - 1)) {
-                                ref.register.environment.hostArr[id] = "";
+                                ref.register.environment.hostArr[id] = '';
                                 update({ environments: elem });
                                 ref.$forceUpdate();
                             }
                         }
-
                     });
                 }
-            })
+            });
         },
         removeHost(environmentId, id) {
             if (!id) {
@@ -119,9 +118,9 @@ export default {
                             update({ environments: this.environments });
                             this.$forceUpdate();
                         }
-                    })
+                    });
                 }
-            })
+            });
         },
         removeEnvironment(id) {
             this.environments.forEach((env, idx, elem) => {
@@ -130,11 +129,11 @@ export default {
                     remove(env.id);
                     this.$forceUpdate();
                 }
-            })
+            });
         },
         toogleExpand(id) {
             this.register.environment.expanded[id] = !this.register.environment.expanded[id];
             this.$forceUpdate();
         }
     }
-}
+};

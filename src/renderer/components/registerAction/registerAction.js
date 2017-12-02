@@ -1,6 +1,6 @@
-import _ from "lodash";
-import { removeSpecialChar } from "../../scripts/Util";
-import { update, remove } from "../../scripts/Data";
+import _ from 'lodash';
+import { removeSpecialChar } from '../../scripts/Util';
+import { update } from '../../scripts/Data';
 
 export default {
     name: 'register-component',
@@ -14,7 +14,7 @@ export default {
         'register.action.path': 'isValid',
         'register.action.method': 'isValid',
         'register.action.property': 'isValid',
-        'register.action.value': 'isValid',
+        'register.action.value': 'isValid'
     },
     methods: {
         isValid() {
@@ -38,10 +38,10 @@ export default {
             var aux = this.removeErrorMessage;
             setTimeout(function() {
                 aux();
-            }, 3000)
+            }, 3000);
         },
         removeErrorMessage() {
-            this.register.action.message = ""
+            this.register.action.message = '';
         },
         addAction() {
             if (!this.register.action.isValid) {
@@ -49,7 +49,7 @@ export default {
             }
 
             if (!this.register.action.editId) {
-                var generatedId = removeSpecialChar(this.register.action.name).toLowerCase()
+                var generatedId = removeSpecialChar(this.register.action.name).toLowerCase();
                 if (!!_.find(this.actions, { id: generatedId }) || !!_.find(this.actions, { name: this.register.environment.name })) {
                     this.setMessage('This action is already registered.');
                     return;
@@ -64,9 +64,9 @@ export default {
                     method: (_.isEqual(this.register.action.actionType, 'invokeMethod')) ? this.register.action.method : '',
                     property: (_.isEqual(this.register.action.actionType, 'setValue')) ? this.register.action.property : '',
                     value: (_.isEqual(this.register.action.actionType, 'setValue')) ? this.register.action.value : ''
-                }
+                };
 
-                this.actions.push(action)
+                this.actions.push(action);
             } else {
                 var action = _.find(this.actions, { id: this.register.action.editId });
                 if (action) {
@@ -79,25 +79,24 @@ export default {
                     action.value = (_.isEqual(this.register.action.actionType, 'setValue')) ? this.register.action.value : '';
                 }
             }
-            this.register.action.editId = "";
-            this.register.action.name = "";
-            this.register.action.actionType = "";
-            this.register.action.path = "";
-            this.register.action.method = "";
-            this.register.action.property = "";
-            this.register.action.value = "";
+            this.register.action.editId = '';
+            this.register.action.name = '';
+            this.register.action.actionType = '';
+            this.register.action.path = '';
+            this.register.action.method = '';
+            this.register.action.property = '';
+            this.register.action.value = '';
             update({ actions: this.actions });
             this.$forceUpdate();
-
         },
         removeAction(id) {
             this.$store.actions.forEach((act, idx, elem) => {
                 if (_.isEqual(act.id, id)) {
                     _.remove(elem, { id: act.id });
-                    update({ actions: this.actions })
+                    update({ actions: this.actions });
                     this.$forceUpdate();
                 }
-            })
+            });
         },
         toogleExpand(id) {
             this.register.action.expanded[id] = !this.register.action.expanded[id];
@@ -119,4 +118,4 @@ export default {
             this.$forceUpdate();
         }
     }
-}
+};

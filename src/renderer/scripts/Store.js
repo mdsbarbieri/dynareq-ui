@@ -1,12 +1,12 @@
 export default {
     register: {
         action: {
-            message: "",
-            actionType: "",
+            message: '',
+            actionType: '',
             expanded: {}
         },
         environment: {
-            message: "",
+            message: '',
             host: {},
             hostArr: {},
             expanded: {}
@@ -14,9 +14,9 @@ export default {
     },
     request: {
         environment: {
-            id: ""
+            id: ''
         },
-        action: "",
+        action: '',
         actionObj: {}
     },
     actions: {},
