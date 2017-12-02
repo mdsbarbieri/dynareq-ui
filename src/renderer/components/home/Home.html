@@ -9,9 +9,9 @@
                             <label class="label">Environments</label>
                             <div class="control">
                                 <div class="select">
-                                    <select v-model="request.environment.id">
+                                    <select v-model="selectedEnv">
                                         <option value="" selected>Select</option>
-                                        <option :value="item.id" v-for="item in environments">{{item.name}}</option>
+                                        <option :value="item" v-for="item in environments">{{item.name}}</option>
                                     </select>
                                 </div>
                             </div>
@@ -22,9 +22,9 @@
                             <label class="label">Action</label>
                             <div class="control">
                                 <div class="select">
-                                    <select v-model="request.action">
+                                    <select v-model="selectedAction">
                                         <option value="" selected>Select</option>
-                                        <option :value="item.id" v-for="item in actions">{{item.name}}</option>
+                                        <option :value="item" v-for="item in actions">{{item.name}}</option>
                                     </select>
                                 </div>
                             </div>
@@ -33,13 +33,13 @@
                 </div>
             </div>
             <div class="column ">
-                <a class="button w-100 is-info is-outlined m-t-24">
+                <button class="button w-100 is-info is-outlined m-t-24" @click="makeRequest">
                     Execute
-                </a>
+                </button>
             </div>
         </div>
     </div>
-    <article class="message is-danger" v-if="request.environment.isProduction">
+    <article class="message is-danger" v-if="selectedEnv.isProduction">
         <div class="message-header">
             <p class="reset">WARNING</p>
         </div>
@@ -47,47 +47,18 @@
             Current environment is PRODUCTION servers
         </div>
     </article>
-    <div v-if="request.actionObj.actionType">
-        <ul class="reset">
-            <li class="host-item">
-                <label>Path:</label> {{ request.actionObj.path }}
-            </li>
-            <li class="host-item">
-                <div class="columns">
-                    <div class="column" v-show="request.actionObj.actionType == 'invokeMethod'">
-                        <label>Method</label>
-                        <input class="input" type="text" v-model="request.actionObj.method" placeholder="Method">
-                    </div>
-                    <div class="column" v-show="request.actionObj.actionType == 'setValue'">
-                        <label>Property:</label>
-                        <input class="input" type="text" v-model="request.actionObj.property" placeholder="Property">
-                    </div>
-                    <div class="column" v-show="request.actionObj.actionType == 'setValue'">
-                        <label>Value:</label>
-                        <input class="input" type="text" v-model="request.actionObj.value" placeholder="Value">
-                    </div>
-                    <div class="column is-one-third">
-                        <a class="button m-t-17 w-100 is-info is-outlined m-t-24" :disabled="!request.actionObj.isValid" v-on:click="saveRequestAction()">
-                            Save
-                        </a>
-                    </div>
-                </div>
-            </li>
-        </ul>
-
-    </div>
-
     <hr>
 
     <h4 class="title">Status</h4>
-    <progress class="progress is-info" value="15" max="100">15%</progress>
+    <progress class="progress is-info" :value="progressPercent" max="100">15%</progress>
     <div class="box console">
         <ul class="m-0">
-            <li>$Execute {{request.action}} in environment {{request.environment.id}}</li>
-            <span v-for="item in environments">
-                <li  v-for="host in item.hosts">${{host.ip}} / <span class="green">OK</span>
+            <li v-for="log in logs">
+                ${{log.message}}
+                <span class="green" v-if="log.withStatus && !log.error"> / OK</span>
+                <span class="red" v-if="log.withStatus && log.error"> / ERROR:  {{log.error}} </span>
             </li>
-            </span>
+
         </ul>
     </div>
 </section>
