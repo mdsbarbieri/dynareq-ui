@@ -16,8 +16,9 @@ export default {
         environment: {
             id: ''
         },
-        action: '',
-        actionObj: {}
+        action: {
+            id: ''
+        }
     },
     actions: {},
     environments: {}
