@@ -83,7 +83,8 @@
     </div>
 
     <h4 class="title">Status</h4>
-    <div class="box console">
+    <div class="box console relative">
+        <span class="delete remove" aria-label="delete" v-on:click="clearConsole()"></span>
         <ul class="m-0">
             <li v-for="log in logs">
                 ${{log.message}}

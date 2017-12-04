@@ -113,6 +113,10 @@ export default {
                     }
                 });
             });
+        },
+        clearConsole() {
+            this.logs = [];
+            this.$forceUpdate();
         }
     }
 };
