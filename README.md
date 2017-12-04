@@ -2,21 +2,13 @@
 
 > Execute requests to all production servers
 
-#### Build Setup
+#### Download
 
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:9080
-npm run dev
-
-# build electron application for production
-npm run build
+[MacOs](https://github.com/mdsbarbieri/dynareq-ui/raw/master/release/dynareq-ui-darwin-x64.zip) - [Win](https://github.com/mdsbarbieri/dynareq-ui/raw/master/release/dynareq-ui-linux-x64.zip) - [Win](https://github.com/mdsbarbieri/dynareq-ui/raw/master/release/dynareq-ui-win32-x64.zip)
 
 
-```
-
----
-
-This project was generated with [electron-vue](https://github.com/SimulatedGREG/electron-vue)@[142eea4](https://github.com/SimulatedGREG/electron-vue/tree/142eea44aa50fdead91a469daedfcff04308c3fc) using [vue-cli](https://github.com/vuejs/vue-cli). Documentation about the original structure can be found [here](https://simulatedgreg.gitbooks.io/electron-vue/content/index.html).
+#### Prints
+![Home](/image/home.jpg)
+![Actions](/image/actions.jpg)
+![Config](/image/config.jpg)
+![Environments](/image/environments.jpg)
