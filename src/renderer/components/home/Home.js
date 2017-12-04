@@ -1,6 +1,6 @@
 import dynReq from 'dynamo-request';
-import _ from "lodash";
-import { update } from "../../scripts/Data";
+import _ from 'lodash';
+import { update } from '../../scripts/Data';
 
 export default {
     name: 'home-component',
@@ -12,7 +12,7 @@ export default {
             serverDone: 0,
             inProcess: false,
             auxActionId: '',
-            auxEnvId: '',
+            auxEnvId: ''
         };
     },
     watch: {
@@ -20,7 +20,7 @@ export default {
         'auxActionId': 'setCurrentAction',
         'request.action.method': 'isValid',
         'request.action.property': 'isValid',
-        'request.action.value': 'isValid',
+        'request.action.value': 'isValid'
     },
     computed: {
         progressPercent() {
@@ -46,12 +46,12 @@ export default {
         },
         setCurrentAction() {
             const getAction = _.find(this.actions, { id: this.auxActionId });
-            this.request.action = (getAction) ? getAction : {};
+            this.request.action = getAction || {};
             this.$forceUpdate();
         },
         setEnvironment() {
             const getEnv = _.find(this.environments, { id: this.auxEnvId });
-            this.request.environment = (getEnv) ? getEnv : {};
+            this.request.environment = getEnv || {};
             this.$forceUpdate();
         },
         saveRequestAction() {
