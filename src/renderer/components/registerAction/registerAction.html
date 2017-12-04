@@ -39,7 +39,7 @@
                         <div class="field">
                             <label class="label">Method</label>
                             <div class="control">
-                                <input class="input" type="text" v-model="register.action.method" placeholder="Method">
+                                <input class="input" type="text" v-on:change="isValid()" v-model="register.action.method" placeholder="Method">
                             </div>
                         </div>
                     </div>
