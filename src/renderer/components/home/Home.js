@@ -70,6 +70,18 @@ export default {
             }
 
             const requestData = Object.assign({}, this.request.action);
+            if (requestData.property) {
+                requestData.propertyName = requestData.property;
+            }
+            if (requestData.value) {
+                requestData.newValue = requestData.value;
+            }
+            if (requestData.path) {
+                requestData.component = requestData.path;
+            }
+            if (requestData.method) {
+                requestData.invokeMethod = requestData.method;
+            }
             const requestServer = this.request.environment.hosts.slice();
             const auth = this.request.environment.user + ':' + this.request.environment.password;
             this.logs.push({
