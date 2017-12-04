@@ -8,7 +8,7 @@
 
 
 #### Prints
-![Home](/image/home.jpg)
-![Actions](/image/actions.jpg)
-![Config](/image/config.jpg)
-![Environments](/image/environments.jpg)
+![Home](https://github.com/mdsbarbieri/dynareq-ui/raw/master/image/home.png)
+![Actions](https://github.com/mdsbarbieri/dynareq-ui/raw/master/image/actions.png)
+![Config](https://github.com/mdsbarbieri/dynareq-ui/raw/master/image/config.png)
+![Environments](https://github.com/mdsbarbieri/dynareq-ui/raw/master/image/environments.png)
