@@ -43,8 +43,9 @@ a.navbar-link.isProduction.is-active {
     background-color: #900000 !important;
 }
 
-.content {
+.content.is-small {
     padding: 15px;
+    padding-bottom: 75px;
 }
 
 .p-0 {
@@ -172,6 +173,10 @@ ul {
 
 .footer {
     padding: 15px;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
 }
 
 .console {
