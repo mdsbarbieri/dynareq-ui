@@ -8,7 +8,14 @@
 
 
 #### Prints
+Page to execute and monitoring requests
 ![Home](https://github.com/mdsbarbieri/dynareq-ui/raw/master/image/home.png "Page to execute and monitoring requests")
+
+Page to manage environments and hosts
 ![Environments](https://github.com/mdsbarbieri/dynareq-ui/raw/master/image/environments.png "Page to manage environments and hosts")
+
+Page to manage actions
 ![Actions](https://github.com/mdsbarbieri/dynareq-ui/raw/master/image/actions.png "Page to manage actions")
+
+Page to import and export app data
 ![Config](https://github.com/mdsbarbieri/dynareq-ui/raw/master/image/config.png "Page to import and export app data")
