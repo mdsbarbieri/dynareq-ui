@@ -85,6 +85,11 @@ export default {
                 requestData.invokeMethod = requestData.method;
             }
             const requestServer = this.request.environment.hosts.slice();
+            if (_.isEmpty(this.request.environment.hosts)) {
+                this.request.inProgress = false;
+                return;
+            }
+
             const auth = this.request.environment.user + ':' + this.request.environment.password;
             this.logs.push({
                 message: `Execute action ${requestData.name} in environment ${this.request.environment.name}`
