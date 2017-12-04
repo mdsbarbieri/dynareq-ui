@@ -1,84 +1,88 @@
 <section>
-    <h4 class="title">Execute Request</h4>
-    <div class="field has-addons">
-        <div class="columns w-100 ">
-            <div class="column is-four-fifths">
-                <div class="columns">
-                    <div class="column">
-                        <div class="field">
-                            <label class="label">Environments</label>
-                            <div class="control">
-                                <div class="select">
-                                    <select v-model="auxEnvId">
+    <div class="relative">
+        <div class="overflow-loader" v-show="request.inProgress">
+            <progress class="progress is-info" :value="progressPercent" max="100">{{progressPercent}}%</progress>
+        </div>
+        <h4 class="title">Execute Request</h4>
+        <div class="field has-addons">
+            <div class="columns w-100 ">
+                <div class="column is-four-fifths">
+                    <div class="columns">
+                        <div class="column">
+                            <div class="field">
+                                <label class="label">Environments</label>
+                                <div class="control">
+                                    <div class="select">
+                                        <select v-model="auxEnvId">
                                         <option value="" selected>Select</option>
                                         <option :value="item.id" v-for="item in environments">{{item.name}}</option>
                                     </select>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="column">
-                        <div class="field">
-                            <label class="label">Action</label>
-                            <div class="control">
-                                <div class="select">
-                                    <select v-model="auxActionId">
+                        <div class="column">
+                            <div class="field">
+                                <label class="label">Action</label>
+                                <div class="control">
+                                    <div class="select">
+                                        <select v-model="auxActionId">
                                         <option value="" selected>Select</option>
                                         <option :value="item.id" v-for="item in actions">{{item.name}}</option>
                                     </select>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="column ">
-                <button class="button w-100 is-info is-outlined m-t-24" @click="makeRequest">
+                <div class="column ">
+                    <button class="button w-100 is-info is-outlined m-t-24" @click="makeRequest">
                     Execute
                 </button>
+                </div>
             </div>
         </div>
-    </div>
-    <article class="message is-danger" v-if="request.environment.isProduction">
-        <div class="message-header">
-            <p class="reset">WARNING</p>
-        </div>
-        <div class="message-body">
-            Current environment is PRODUCTION servers
-        </div>
-    </article>
-    <div v-if="request.action.id">
-        <ul class="reset">
-            <li class="host-item">
-                <label>Path:</label> {{ request.action.path }}
-            </li>
-            <li class="host-item">
-                <div class="columns">
-                    <div class="column" v-show="request.action.actionType == 'invokeMethod'">
-                        <label>Method</label>
-                        <input class="input" type="text" v-model="request.action.method" placeholder="Method">
-                    </div>
-                    <div class="column" v-show="request.action.actionType == 'setValue'">
-                        <label>Property:</label>
-                        <input class="input" type="text" v-model="request.action.property" placeholder="Property">
-                    </div>
-                    <div class="column" v-show="request.action.actionType == 'setValue'">
-                        <label>Value:</label>
-                        <input class="input" type="text" v-model="request.action.value" placeholder="Value">
-                    </div>
-                    <div class="column is-one-third">
-                        <a class="button m-t-17 w-100 is-info is-outlined m-t-24" :disabled="!request.action.isValid" v-on:click="saveRequestAction()">
+        <article class="message is-danger" v-if="request.environment.isProduction">
+            <div class="message-header">
+                <p class="reset">WARNING</p>
+            </div>
+            <div class="message-body">
+                Current environment is PRODUCTION servers
+            </div>
+        </article>
+        <div v-if="request.action.id">
+            <ul class="reset">
+                <li class="host-item">
+                    <label>Path:</label> {{ request.action.path }}
+                </li>
+                <li class="host-item">
+                    <div class="columns">
+                        <div class="column" v-show="request.action.actionType == 'invokeMethod'">
+                            <label>Method</label>
+                            <input class="input" type="text" v-model="request.action.method" placeholder="Method">
+                        </div>
+                        <div class="column" v-show="request.action.actionType == 'setValue'">
+                            <label>Property:</label>
+                            <input class="input" type="text" v-model="request.action.property" placeholder="Property">
+                        </div>
+                        <div class="column" v-show="request.action.actionType == 'setValue'">
+                            <label>Value:</label>
+                            <input class="input" type="text" v-model="request.action.value" placeholder="Value">
+                        </div>
+                        <div class="column is-one-third">
+                            <a class="button m-t-17 w-100 is-info is-outlined m-t-24" :disabled="!request.action.isValid" v-on:click="saveRequestAction()">
                             Save
                         </a>
+                        </div>
                     </div>
-                </div>
-            </li>
-        </ul>
+                </li>
+            </ul>
+        </div>
+        <hr>
     </div>
-    <hr>
 
     <h4 class="title">Status</h4>
-    <progress class="progress is-info" :value="progressPercent" max="100">{{progressPercent}}%</progress>
     <div class="box console">
         <ul class="m-0">
             <li v-for="log in logs">

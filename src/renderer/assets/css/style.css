@@ -44,7 +44,7 @@ a.navbar-link.isProduction.is-active {
 }
 
 .content {
-    padding: 0 15px;
+    padding: 15px;
 }
 
 .p-0 {
@@ -257,4 +257,32 @@ ul {
 
 .isMac .navbar-brand {
     float: right
+}
+
+.overflow-loader {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.64);
+    z-index: 10;
+}
+
+.overflow-loader .progress {
+    position: absolute;
+    bottom: 0;
+}
+
+.tabs:not(:last-child) {
+    margin-bottom: 0px;
+}
+
+.tab-overflow {
+    position: absolute;
+    right: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.64);
+    z-index: 10;
+    height: 35px;
 }

@@ -69,6 +69,8 @@ export default {
                 return;
             }
 
+            this.request.inProgress = true;
+
             const requestData = Object.assign({}, this.request.action);
             if (requestData.property) {
                 requestData.propertyName = requestData.property;
@@ -106,6 +108,9 @@ export default {
                     }
                     vm.logs.push(log);
                     vm.serverDone++;
+                    if (_.isEqual(vm.serverDone, vm.serverTotal)) {
+                        vm.request.inProgress = false;
+                    }
                 });
             });
         }

@@ -18,7 +18,8 @@ export default {
         },
         action: {
             id: ''
-        }
+        },
+        inProgress: false
     },
     actions: {},
     environments: {}
