@@ -8,7 +8,7 @@
 
 
 #### Prints
-![Home](https://github.com/mdsbarbieri/dynareq-ui/raw/master/image/home.png)
-![Actions](https://github.com/mdsbarbieri/dynareq-ui/raw/master/image/actions.png)
-![Config](https://github.com/mdsbarbieri/dynareq-ui/raw/master/image/config.png)
-![Environments](https://github.com/mdsbarbieri/dynareq-ui/raw/master/image/environments.png)
+![Home](https://github.com/mdsbarbieri/dynareq-ui/raw/master/image/home.png "Page to execute and monitoring requests")
+![Environments](https://github.com/mdsbarbieri/dynareq-ui/raw/master/image/environments.png "Page to manage environments and hosts")
+![Actions](https://github.com/mdsbarbieri/dynareq-ui/raw/master/image/actions.png "Page to manage actions")
+![Config](https://github.com/mdsbarbieri/dynareq-ui/raw/master/image/config.png "Page to import and export app data")
