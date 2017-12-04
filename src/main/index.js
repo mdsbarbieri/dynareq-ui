@@ -1,6 +1,7 @@
 import { app, BrowserWindow, ipcMain, dialog } from 'electron';
 import fs from 'fs';
 import jsonfile from 'jsonfile';
+import _ from 'lodash';
 import { update } from '../renderer/scripts/Data';
 
 var open = require('open');
@@ -74,6 +75,43 @@ ipcMain.on('importData', function(event, exportFolder, data) {
                 var file = jsonfile.readFileSync(result[0]);
                 if (file && file.environments && file.actions) {
                     update(file);
+                    win.reload();
+                }
+            }
+        });
+});
+
+ipcMain.on('mergeData', function(event, data) {
+    const win = BrowserWindow.fromWebContents(event.sender);
+    dialog.showOpenDialog(win, {
+            defaultPath: 'c:/',
+            filters: [
+                { name: 'All Files', extensions: ['json'] }
+            ]
+        },
+        function(result) {
+            if (result) {
+                var file = jsonfile.readFileSync(result[0]);
+                if (file && file.environments && file.actions) {
+                    _.forEach(file.environments, (environemnt) => {
+                        let existingData = _.find(data.environments, { id: environemnt.id });
+                        if (!existingData) {
+                            data.environments.push(environemnt);
+                        } else {
+                            _.forEach(environemnt.hosts, (host) => {
+                                if (!_.find(existingData.hosts, { id: host.id })) {
+                                    existingData.hosts.push(host);
+                                }
+                            });
+                        }
+                    });
+                    _.forEach(file.actions, (action) => {
+                        let existingData = _.find(data.actions, { id: action.id });
+                        if (!existingData) {
+                            data.actions.push(action);
+                        }
+                    });
+                    update(data);
                     win.reload();
                 }
             }

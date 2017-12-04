@@ -18,7 +18,14 @@ export default {
             };
 
             ipcRenderer.send('exportData', exportFolder, data);
+        },
+        mergeData() {
+            var data = {
+                environments: this.environments,
+                actions: this.actions
+            };
+
+            ipcRenderer.send('mergeData', data);
         }
     }
-}
-;
+};

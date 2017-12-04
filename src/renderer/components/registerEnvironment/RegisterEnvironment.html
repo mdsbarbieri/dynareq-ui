@@ -64,26 +64,14 @@
                 </li>
                 <li class="host-item">
                     <div class="columns">
-                        <div class="column is-four-fifths ">
+                        <div class="column ">
                             <div class="field has-addons">
                                 <div class="control w-100 ">
                                     <input class="input" type="text" v-model="register.environment.hostArr[item.id]" placeholder="Add list separated by ','">
                                 </div>
                                 <div class="control">
                                     <a class="button is-info is-outlined" v-on:click="addHostArr(item.id)">
-                                        Add List
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="column">
-                            <div class="field has-addons">
-                                <div class="control">
-                                    <input class="input" type="text" v-model="register.environment.host[item.id]" placeholder="Add Single">
-                                </div>
-                                <div class="control">
-                                    <a class="button is-info is-outlined" v-on:click="addHost(item.id)">
-                                        Add
+                                        Add Host
                                     </a>
                                 </div>
                             </div>

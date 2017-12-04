@@ -55,25 +55,6 @@ export default {
             update({ environments: this.environments });
             this.$forceUpdate();
         },
-        addHost(id) {
-            var value = this.register.environment.host[id];
-            if (!value) {
-                return;
-            }
-
-            this.environments.forEach((env, idx, elem) => {
-                if (_.isEqual(env.id, id)) {
-                    var host = {
-                        'id': removeSpecialChar(value),
-                        'ip': value.trim()
-                    };
-                    env.hosts.push(host);
-                    this.register.environment.host[id] = '';
-                    update({ environments: env });
-                    this.$forceUpdate();
-                }
-            });
-        },
         addHostArr(id) {
             var value = this.register.environment.hostArr[id];
             if (!value) {
