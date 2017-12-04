@@ -65,7 +65,7 @@ export default {
                 if (_.isEqual(env.id, id)) {
                     var host = {
                         'id': removeSpecialChar(value),
-                        'ip': value
+                        'ip': value.trim()
                     };
                     env.hosts.push(host);
                     this.register.environment.host[id] = '';
@@ -92,7 +92,7 @@ export default {
                         if (elemValue) {
                             var host = {
                                 'id': removeSpecialChar(elemValue),
-                                'ip': elemValue
+                                'ip': elemValue.trim()
                             };
                             env.hosts.push(host);
 

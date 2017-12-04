@@ -1,18 +1,18 @@
-import { app, BrowserWindow, ipcMain, dialog } from 'electron'
+import { app, BrowserWindow, ipcMain, dialog } from 'electron';
 import fs from 'fs';
 import jsonfile from 'jsonfile';
 import { update } from '../renderer/scripts/Data';
 
-var open = require("open");
+var open = require('open');
 
 if (process.env.NODE_ENV !== 'development') {
-    global.__static = require('path').join(__dirname, '/static').replace(/\\/g, '\\\\')
+    global.__static = require('path').join(__dirname, '/static').replace(/\\/g, '\\\\');
 }
 
-let mainWindow
+let mainWindow;
 const winURL = process.env.NODE_ENV === 'development' ?
     `http://localhost:9080` :
-    `file://${__dirname}/index.html`
+    `file://${__dirname}/index.html`;
 
 function createWindow() {
     mainWindow = new BrowserWindow({
@@ -21,13 +21,13 @@ function createWindow() {
         width: 1000,
         autoHideMenuBar: true,
         titleBarStyle: 'hidden-inset'
-    })
+    });
 
-    mainWindow.loadURL(winURL)
+    mainWindow.loadURL(winURL);
 
     mainWindow.on('closed', () => {
-        mainWindow = null
-    })
+        mainWindow = null;
+    });
 
     mainWindow.webContents.on('new-window', function(event, url) {
         event.preventDefault();
@@ -35,23 +35,22 @@ function createWindow() {
     });
 }
 
-app.on('ready', createWindow)
+app.on('ready', createWindow);
 
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
-        app.quit()
+        app.quit();
     }
-})
+});
 
 app.on('activate', () => {
     if (mainWindow === null) {
-        createWindow()
+        createWindow();
     }
-})
-
+});
 
 ipcMain.on('exportData', function(event, exportFolder, data) {
-    const win = BrowserWindow.fromWebContents(event.sender)
+    const win = BrowserWindow.fromWebContents(event.sender);
     dialog.showSaveDialog(win, {
         title: 'dynarequi-data.json',
         defaultPath: exportFolder + '/dynarequi-data.json'
@@ -63,11 +62,11 @@ ipcMain.on('exportData', function(event, exportFolder, data) {
 });
 
 ipcMain.on('importData', function(event, exportFolder, data) {
-    const win = BrowserWindow.fromWebContents(event.sender)
+    const win = BrowserWindow.fromWebContents(event.sender);
     dialog.showOpenDialog(win, {
             defaultPath: 'c:/',
             filters: [
-                { name: 'All Files', extensions: ['json'] },
+                { name: 'All Files', extensions: ['json'] }
             ]
         },
         function(result) {

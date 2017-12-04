@@ -4,7 +4,7 @@
     "version": "0.0.0",
     "author": "Matheus Barbieri <mdsbarbieri@gmail.com>",
     "description": "Execute requests to all production servers",
-    "license": null,
+    "license": "MIT",
     "main": "./dist/electron/main.js",
     "scripts": {
         "build": "node .electron-vue/build.js",
