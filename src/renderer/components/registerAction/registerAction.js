@@ -55,7 +55,7 @@ export default {
                     return;
                 }
 
-                var action = {
+                let action = {
                     id: generatedId,
                     name: this.register.action.name,
                     type: this.register.action.actionType,
@@ -68,7 +68,7 @@ export default {
 
                 this.actions.push(action);
             } else {
-                var action = _.find(this.actions, { id: this.register.action.editId });
+                let action = _.find(this.actions, { id: this.register.action.editId });
                 if (action) {
                     action.name = this.register.action.name;
                     action.type = this.register.action.actionType;
@@ -79,7 +79,7 @@ export default {
                     action.value = (_.isEqual(this.register.action.actionType, 'setValue')) ? this.register.action.value : '';
                 }
             }
-            this.register.action.editId = '';
+            this.register.action.editId = null;
             this.register.action.name = '';
             this.register.action.actionType = '';
             this.register.action.path = '';
