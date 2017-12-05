@@ -4,6 +4,7 @@ import jsonfile from 'jsonfile';
 import _ from 'lodash';
 import { update } from '../renderer/scripts/Data';
 
+
 var open = require('open');
 
 if (process.env.NODE_ENV !== 'development') {
@@ -117,3 +118,5 @@ ipcMain.on('mergeData', function(event, data) {
             }
         });
 });
+
+
