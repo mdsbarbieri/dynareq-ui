@@ -3,7 +3,7 @@
     "version": "0.0.1",
     "author": "Matheus Barbieri <matheus.barbieri@compasso.com.br>",
     "description": "Execute requests to all production servers",
-    "license": "MIT",
+    "license": "SEE LICENSE IN <LICENSE>",
     "main": "./dist/electron/main.js",
     "scripts": {
         "build": "node .electron-vue/build.js && electron-builder",

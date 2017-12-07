@@ -82,8 +82,8 @@
         <hr>
     </div>
 
-    <h4 class="title">Status</h4>
-    <div class="box console relative">
+    <h4 class="title" v-show="logs.length">Status</h4>
+    <div class="box console relative" v-show="logs.length">
         <span class="delete remove" aria-label="delete" v-on:click="clearConsole()"></span>
         <ul class="m-0">
             <li v-for="log in logs">

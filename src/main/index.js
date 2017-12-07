@@ -1,9 +1,9 @@
-import { app, BrowserWindow, ipcMain, dialog } from 'electron';
+import { app, BrowserWindow, ipcMain, dialog, autoUpdater } from 'electron';
 import fs from 'fs';
 import jsonfile from 'jsonfile';
 import _ from 'lodash';
 import { update } from '../renderer/scripts/Data';
-import { autoUpdater } from 'electron-updater'
+import packageJson from '../../package.json';
 
 var open = require('open');
 if (process.env.NODE_ENV !== 'development') {
@@ -50,20 +50,39 @@ app.on('activate', () => {
     }
 });
 
-/**
- * Auto Updater
- *
- * Uncomment the following code below and install `electron-updater` to
- * support auto updating. Code Signing with a valid certificate is required.
- * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-electron-builder.html#auto-updating
- */
 
-autoUpdater.on('update-downloaded', () => {
-    autoUpdater.quitAndInstall()
-})
+const server = 'https://github.com/mdsbarbieri/dynareq-ui/releases'
+const feed = `${server}/tag/${packageJson.version}`
+
+autoUpdater.setFeedURL(feed)
 
 app.on('ready', () => {
-    if (process.env.NODE_ENV === 'production') autoUpdater.checkForUpdates()
+    if (process.env.NODE_ENV !== 'development') {
+        autoUpdater.checkForUpdates();
+    }
+})
+
+setInterval(() => {
+    autoUpdater.checkForUpdates()
+}, 60000)
+
+autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
+    const dialogOpts = {
+        type: 'info',
+        buttons: ['Restart', 'Later'],
+        title: 'Application Update',
+        message: process.platform === 'win32' ? releaseNotes : releaseName,
+        detail: 'A new version has been downloaded. Restart the application to apply the updates.'
+    }
+
+    dialog.showMessageBox(dialogOpts, (response) => {
+        if (response === 0) autoUpdater.quitAndInstall()
+    })
+})
+
+autoUpdater.on('error', message => {
+    console.error('There was a problem updating the application')
+    console.error(message)
 })
 
 ipcMain.on('importData', function(event, exportFolder, data) {
