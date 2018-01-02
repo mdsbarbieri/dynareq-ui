@@ -1,9 +1,11 @@
-# dynareq-ui
 
+# DEPRECATED
+View the new repository [here](https://github.com/mdsbarbieri/dynamo-tools).
+
+# dynareq-ui
 > Execute requests to all production servers
 
 #### Download
-
 [MacOs](https://github.com/mdsbarbieri/dynareq-ui/releases/download/v0.1-beta/dynareq-ui-darwin-x64.zip) - [Linux](https://github.com/mdsbarbieri/dynareq-ui/releases/download/v0.1-beta/dynareq-ui-linux-x64.zip) - [Win](https://github.com/mdsbarbieri/dynareq-ui/releases/latest)
 
 
